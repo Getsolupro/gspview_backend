@@ -1,0 +1,19 @@
+{
+  "name": "gspview_backend",
+  "version": "1.0.0",
+  "description": "backend de la plateforme de streaming ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Getsolupro/gspview_backend.git"
+  },
+  "author": "getsolupro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Getsolupro/gspview_backend/issues"
+  },
+  "homepage": "https://github.com/Getsolupro/gspview_backend#readme"
+}
