@@ -1,10 +1,16 @@
 import { validationResult } from "express-validator";
+import registerService from "../services/registerService.js";
+
+//import createNewUser from "../services/registerService";
+
+
+
 
 const RegisterUser=(req, res)=>{
     return res.send("enregistrer");
 }
 
-const CreateUser=(req, res)=>{
+const CreateUser= async (req, res)=>{
     // Validation des données envoyées
     let errorsArr=[];
     let validationErrors=validationResult(req);
@@ -18,13 +24,14 @@ const CreateUser=(req, res)=>{
         return res.send({"status":404,"erreurs":errorsArr});
     }
 
-   return res.send(req.body);
-   // return res.send("enregistrer creer");
-    //console.log(req.body);
-    
     // Creation d'un nouvel utilisateur
     try {
-        
+        let newUser={
+            email: req.body.email,
+            password:req.body.password
+        };
+        await registerService.CreateNewUser(newUser);
+        return res.send({"status":200,"data":req.body});
     } catch (error) {
         
     }
