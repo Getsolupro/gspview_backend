@@ -14,6 +14,7 @@ import session from "express-session";
 
 const app = express();
 app.use(cors());
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 //ConfigViewEngine(app);
@@ -38,5 +39,5 @@ InitWebRoutes(app);
 
 const port=process.env.PORT || 3000
 app.listen(port, () => {
-    console.log('Serving')
+    console.log(`Serveur demarré  sur le port ${port}`)
 });

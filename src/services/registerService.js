@@ -7,11 +7,26 @@ const CreateNewUser=(user)=>{
   return new Promise( async (resolve, reject)=>{
         try {
             let check=await checkEmailUser(user.email);
-           // console.log(check);
+           console.log(check);
            if(check){
             reject(` Cet email " ${user.email}" existe deja `)
            }else{
-
+               console.log("entrer")
+                // Crypter le mot de passe
+                let salt=bcryptjs.genSaltSync(10);
+                let data={
+                    email:user.email,
+                    password:bcryptjs.hashSync(user.password,salt)
+                };
+               /// console.log(data);
+                Connection.query(
+                    "INSERT INTO users set ?", data, function(errors, row){
+                        if(errors){
+                            reject(errors);
+                        }
+                        resolve("Nouveau utilisateur crée vaec succès");
+                    }
+                )
            }
         } catch (error) {
             reject(error);

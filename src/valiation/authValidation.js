@@ -12,6 +12,12 @@ const ValidateRegister=[
     )
 ];
 
+const ValidateAuthentification=[
+    check("email","Invalid email").isEmail().trim(),
+    check("password", "Mot de passe invalide, le mot de passe doit etre superieur à 4 caractères").isLength({min:4}),
+];
+
 export default {
-    ValidateRegister
+    ValidateRegister, 
+    ValidateAuthentification
 }

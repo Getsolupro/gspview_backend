@@ -3,9 +3,6 @@ import registerService from "../services/registerService.js";
 
 //import createNewUser from "../services/registerService";
 
-
-
-
 const RegisterUser=(req, res)=>{
     return res.send("enregistrer");
 }
@@ -23,7 +20,6 @@ const CreateUser= async (req, res)=>{
         //return res.redirect("/getUsers");
         return res.send({"status":404,"erreurs":errorsArr});
     }
-
     // Creation d'un nouvel utilisateur
     try {
         let newUser={
