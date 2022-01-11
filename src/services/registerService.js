@@ -1,6 +1,7 @@
 
 import Connection from "../config/connectDB.js";
 import bcryptjs from "bcryptjs";
+import bcrypt from "bcrypt"
 
 
 const CreateNewUser=(user)=>{
@@ -11,14 +12,12 @@ const CreateNewUser=(user)=>{
            if(check){
             reject(` Cet email " ${user.email}" existe deja `)
            }else{
-               console.log("entrer")
                 // Crypter le mot de passe
                 let salt=bcryptjs.genSaltSync(10);
                 let data={
                     email:user.email,
                     password:bcryptjs.hashSync(user.password,salt)
                 };
-               /// console.log(data);
                 Connection.query(
                     "INSERT INTO users set ?", data, function(errors, row){
                         if(errors){

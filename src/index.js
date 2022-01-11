@@ -13,10 +13,15 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 
 const app = express();
-app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
+app.use(cors(
+  {
+    origin:["http://localhost:3000"],
+    methods:["GET","POST"],
+    credentials:true
+  }
+));
 //ConfigViewEngine(app);
 
 // Utilisation de cookie parser
@@ -24,8 +29,9 @@ app.use(cookieParser("secret"));
 
 //Configuration de la session cookie
 app.use(session({
+    key:"userId",
     secret:"secret",
-    resave:true,
+    resave:false,
     saveUninitialized:false,
     cookie:{
        maxAge:1000*60*60*24 // 1 jour
